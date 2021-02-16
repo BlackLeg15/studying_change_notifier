@@ -1,6 +1,9 @@
 # weather_app
 
-A new Flutter project.
+Repository created to do some stuff with the state management called Change Notifier.\
+
+## Warnings
+* Null safety is on, so please use Flutter's beta channel in order to execute this app.
 
 ## Getting Started
 
