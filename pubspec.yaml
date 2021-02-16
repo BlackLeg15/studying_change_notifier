@@ -1,5 +1,5 @@
 name: weather_app
-description: A new Flutter project.
+description: A Flutter project to study Change Notifier (and null safety) a bit .
 
 publish_to: 'none' 
 
