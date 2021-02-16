@@ -6,13 +6,11 @@ class WeatherChangeNotifier extends ChangeNotifier {
   bool isLoading = false;
   Weather? weather;
 
-  Future getWeather(String cityName) async {
+  Future<void> getWeather(String cityName) {
     _setLoading(true);
-    await Future.delayed(Duration(seconds: 3));
-    if (cityName.isNotEmpty) {
-      weather = Weather(cityName, 19.9);
-    }
-    _setLoading(false);
+    return Future.delayed(Duration(seconds: 3)).then((value) {
+      if (cityName.isNotEmpty) weather = Weather(cityName, 19.9);
+    }).whenComplete(() => _setLoading(false));
   }
 
   _setLoading(bool value) {
