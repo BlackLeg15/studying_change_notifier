@@ -9,9 +9,6 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter + Change Notifier',
-      theme: ThemeData(
-        textSelectionTheme: TextSelectionThemeData(selectionHandleColor: Colors.grey),
-      ),
       home: ChangeNotifierProvider(
         child: HomePage(),
         create: (_) => WeatherChangeNotifier(),
