@@ -5,19 +5,12 @@ import 'package:provider/provider.dart';
 import 'change_notifier/weather_change_notifier.dart';
 import 'model/weather.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Studying State Management"),
+        title: const Text("Studying State Management w/ Change Notifier"),
       ),
       body: Center(
         child: Consumer<WeatherChangeNotifier>(
@@ -38,20 +31,21 @@ class _HomePageState extends State<HomePage> {
   Widget buildInitialInput() => const Center(
         child: const CityInputField(),
       );
+
   Column buildColumnWithData(Weather? weather) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
           weather?.cityName ?? "",
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.w700,
           ),
         ),
         Text(
           "${weather?.temperatureInCelsius.toStringAsFixed(1)} °C",
-          style: TextStyle(fontSize: 80),
+          style: const TextStyle(fontSize: 80),
         ),
         const CityInputField(),
       ],
@@ -63,8 +57,7 @@ var cityName = '';
 
 void submitCityName(BuildContext context, String cityName) {
   final controller = context.read<WeatherChangeNotifier>();
-  controller.getWeather(cityName);
-  cityName = '';
+  controller.getWeather(cityName).then((value) => cityName = '');
 }
 
 class CityInputField extends StatelessWidget {
@@ -72,11 +65,10 @@ class CityInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 600),
+      constraints: const BoxConstraints(maxWidth: 600),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50),
         child: TextField(
-          key: const Key("city-field"),
           onSubmitted: (value) => submitCityName(context, value),
           textInputAction: TextInputAction.search,
           onChanged: (value) => cityName = value,
@@ -84,7 +76,6 @@ class CityInputField extends StatelessWidget {
             hintText: "Digite o nome de uma cidade",
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             suffixIcon: InkWell(
-              key: const Key('submit'),
               child: const Icon(Icons.search),
               onTap: () => submitCityName(context, cityName),
             ),
