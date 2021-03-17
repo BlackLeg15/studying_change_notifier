@@ -3,7 +3,8 @@
 Repository created to do some stuff with the state management called Change Notifier.
 
 ## Warnings
-* Null safety is on, so please use Flutter's beta channel in order to execute this app.
+* Null safety is on
+* This project is being maintained with Flutter 2.0.2 (channel stable)
 
 ## Getting Started
 
