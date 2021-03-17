@@ -6,6 +6,8 @@ import 'change_notifier/weather_change_notifier.dart';
 import 'model/weather.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

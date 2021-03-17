@@ -8,7 +8,7 @@ class WeatherChangeNotifier extends ChangeNotifier {
 
   Future<void> getWeather(String cityName) {
     _setLoading(true);
-    return Future.delayed(Duration(seconds: 3)).then((value) {
+    return Future.delayed(const Duration(seconds: 3)).then((value) {
       if (cityName.isNotEmpty) weather = Weather(cityName, 19.9);
     }).whenComplete(() => _setLoading(false));
   }
